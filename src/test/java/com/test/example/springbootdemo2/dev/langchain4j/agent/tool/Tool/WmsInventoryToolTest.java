@@ -30,4 +30,14 @@ class WmsInventoryToolTest {
     void queryInventoryReturnsNotFoundForUnknownSku() {
         assertEquals("该SKU不存在", tool.queryInventory("SKU999"));
     }
+
+    @Test
+    void queryInventoryTreatsNullSkuAsNotFound() {
+        assertEquals("该SKU不存在", tool.queryInventory(null));
+    }
+
+    @Test
+    void queryInventoryIsCaseSensitive() {
+        assertEquals("该SKU不存在", tool.queryInventory("sku001"));
+    }
 }
